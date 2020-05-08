@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using Destructurama;
+using Masking.Serilog;
 using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Json;
 
 namespace Serilog_Examples
 {
@@ -9,9 +14,24 @@ namespace Serilog_Examples
     {
         public static void init()
         {
-            Serilog.Debugging.SelfLog.Enable(msg => Console.WriteLine(msg));
+            //Serilog.Debugging.SelfLog.Enable(msg=>Debug.WriteLine(msg));
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.Console()
+                //.Destructure.ByMaskingProperties(opts =>
+                //{
+                //    opts.PropertyNames.Add(nameof(VerUseFullClass.Name));
+                //    opts.Mask = "******";
+                //})
+                .Destructure.UsingAttributes()
+                .Enrich.WithThreadId()
+                .Enrich.WithThreadName()
+                .Enrich.WithEnvironmentUserName()
+                .Enrich.WithMachineName()
+                //.Enrich.FromLogContext()
+                .WriteTo.ColoredConsole(LogEventLevel.Debug)
+                .WriteTo.ApplicationInsights("instrumentationKey", TelemetryConverter.Traces)
+                .WriteTo.RollingFile("log-{Date}.txt",outputTemplate: "{Timestamp:yyyy-MM-dd} [{Level}] {Properties}{Message}{NewLine}{Exception}")
+                .WriteTo.RollingFile("log-1-{Date}.txt", outputTemplate: "[{Level}] {Timestamp:yyyy-MM-dd} {Message}{NewLine}{Exception}{NewLine}{Properties}")
+                .WriteTo.RollingFile(new JsonFormatter(),"log-json-{Date}.txt")
                 .CreateLogger();
         }
     }
