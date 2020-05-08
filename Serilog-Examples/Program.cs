@@ -8,24 +8,14 @@ namespace Serilog_Examples
     {
         static void Main(string[] args)
         {
+            Serilog_config.init();
 
-            Serilog.Debugging.SelfLog.Enable(msg => Console.WriteLine(msg));
-            
-
-            using (var log = new LoggerConfiguration()
-                .WriteTo.Console()
-                .CreateLogger())
-            {
-                log.Information("Hello, Serilog!");
-                log.Warning("Goodbye, Serilog.");
-                var userfullObject = new VerUseFullClass();
-               var name= userfullObject.Name;
-               var id = userfullObject.Id;
-                log.Warning("Goodbye, Serilog. {name}, {id}", id,  name);
-            }
-
-
-
+            Log.Logger.Information("Hello, Serilog!");
+            Log.Logger.Warning("Goodbye, Serilog.");
+            var userfullObject = new VerUseFullClass();
+            var name = userfullObject.Name;
+            var id = userfullObject.Id;
+            Log.Logger.Warning("Goodbye, Serilog. {name}, {id}", id, name);
 
             Console.WriteLine("Hello World!");
         }
