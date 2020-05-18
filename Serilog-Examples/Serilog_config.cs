@@ -14,7 +14,7 @@ namespace Serilog_Examples
     {
         public static void init()
         {
-            //Serilog.Debugging.SelfLog.Enable(msg=>Debug.WriteLine(msg));
+            
             Log.Logger = new LoggerConfiguration()
                 //.Destructure.ByMaskingProperties(opts =>
                 //{
@@ -28,10 +28,11 @@ namespace Serilog_Examples
                 .Enrich.WithMachineName()
                 //.Enrich.FromLogContext()
                 .WriteTo.ColoredConsole(LogEventLevel.Debug)
-                .WriteTo.ApplicationInsights("instrumentationKey", TelemetryConverter.Traces)
-                .WriteTo.RollingFile("log-{Date}.txt",outputTemplate: "{Timestamp:yyyy-MM-dd} [{Level}] {Properties}{Message}{NewLine}{Exception}")
-                .WriteTo.RollingFile("log-1-{Date}.txt", outputTemplate: "[{Level}] {Timestamp:yyyy-MM-dd} {Message}{NewLine}{Exception}{NewLine}{Properties}")
-                .WriteTo.RollingFile(new JsonFormatter(),"log-json-{Date}.txt")
+                .WriteTo.MongoDB("mongodb://localhost:27017/Serilog_Examples")
+                .WriteTo.ApplicationInsights("9f366977-5797-4fba-9022-2275a3b95c66", TelemetryConverter.Traces,LogEventLevel.Verbose)
+                .WriteTo.RollingFile("log-{Date}.txt",outputTemplate: "{Timestamp:yyyy-MM-dd} [{Level}] {Properties}{Message}{NewLine}{Exception}", shared: true)
+                .WriteTo.RollingFile("log-1-{Date}.txt", outputTemplate: "[{Level}] {Timestamp:yyyy-MM-dd} {Message}{NewLine}{Exception}{NewLine}{Properties}",shared:true)
+                .WriteTo.RollingFile(new JsonFormatter(),"log-json-{Date}.txt", shared: true)
                 .CreateLogger();
         }
     }

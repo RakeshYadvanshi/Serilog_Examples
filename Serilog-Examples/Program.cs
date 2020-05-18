@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using Destructurama.Attributed;
 using Serilog;
 
@@ -10,17 +11,36 @@ namespace Serilog_Examples
         static void Main(string[] args)
         {
             Serilog_config.init();
-
-            Log.Logger.Information("Hello, Serilog!");
-            Log.Logger.Warning("Goodbye, Serilog.");
+            Thread.Sleep(2000);
+            loging().Information("1-1");
+            Thread.Sleep(2000);
+            loging().Warning("Goodbye, Serilog.");
             var userfullObject = new VerUseFullClass();
+            Thread.Sleep(2000);
             var name = userfullObject.Name;
             var id = userfullObject.Id;
-            Log.Logger.Warning("Goodbye, Serilog. {id} {name}", id, name);
-            Log.Logger.Error("Goodbye1, Serilog. {name}, {id}", id, name);
-            Log.Logger.Error("Goodbye1, Serilog. {@userfullObject}", userfullObject);
+            Thread.Sleep(2000);
+            Thread.Sleep(2000);
+            loging().Warning("Goodbye, Serilog. {id} {name}", id, name);
+            Thread.Sleep(2000);
+            loging().Error("Goodbye1, Serilog. {name}, {id}", id, name);
+            Thread.Sleep(2000);
+            loging().Error("Goodbye1, Serilog. {@userfullObject}", userfullObject);
+            loging().Error("Goodbye1, Serilog. @{userfullObject}", userfullObject);
+            Thread.Sleep(2000);
             Console.WriteLine("Hello World!");
-            Log.Logger.Error(new Exception("test"),"testing exception");
+            Thread.Sleep(2000);
+            loging().Information("2-2");
+
+            loging().Error(new Exception("test"),"testing exception");
+            Thread.Sleep(2000);
+           
+        }
+
+        public static ILogger loging()
+        {
+           
+            return Log.Logger;
         }
 
        
@@ -34,4 +54,6 @@ namespace Serilog_Examples
         [LogMasked(ShowFirst = 2, ShowLast = 2)]
         public string Token { get; set; } = "Secure Token";
     }
+
+   
 }
