@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serilog-Examples.Console", "Serilog-Examples\Serilog-Examples.Console.csproj", "{1298AB2D-D20D-4595-BB90-24F70AC388DE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog-Examples.CoreMVC", "Serilog-Examples.CoreMVC\Serilog-Examples.CoreMVC.csproj", "{146165CC-0018-45E9-80E1-E3B8C9D8ADC9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog-Examples.StandardMVC", "Serilog-Examples.StandardMVC\Serilog-Examples.StandardMVC.csproj", "{3BAF2443-2B24-42A0-8698-B28D78F1B5F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serilog-Examples.Console", "Serilog-Examples.CoreConsole\Serilog-Examples.Console.csproj", "{32760DB1-178F-4DDD-B80A-EB9766909173}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1298AB2D-D20D-4595-BB90-24F70AC388DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1298AB2D-D20D-4595-BB90-24F70AC388DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1298AB2D-D20D-4595-BB90-24F70AC388DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1298AB2D-D20D-4595-BB90-24F70AC388DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{146165CC-0018-45E9-80E1-E3B8C9D8ADC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{146165CC-0018-45E9-80E1-E3B8C9D8ADC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{146165CC-0018-45E9-80E1-E3B8C9D8ADC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{3BAF2443-2B24-42A0-8698-B28D78F1B5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BAF2443-2B24-42A0-8698-B28D78F1B5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BAF2443-2B24-42A0-8698-B28D78F1B5F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32760DB1-178F-4DDD-B80A-EB9766909173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32760DB1-178F-4DDD-B80A-EB9766909173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32760DB1-178F-4DDD-B80A-EB9766909173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32760DB1-178F-4DDD-B80A-EB9766909173}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
